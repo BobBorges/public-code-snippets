@@ -20,10 +20,13 @@ def main():
                     else:                                       # or else
                         bag[word] += 1                          # increment the existing val by 1
 
-    print(bag)
-    #sort by val
-    #dump to a file
+    ### sort dict by val
+    bag = {k: v for k, v in sorted(bag.items(), key=lambda item: item[1], reverse=True)}
 
+    ### dump dict as JSON obj to a file
+    with open('bag-o-words.json', 'w+') as outfile:
+        json.dump(bag, outfile, indent=4)
+        
 
 if __name__ == '__main__':
 	main()
